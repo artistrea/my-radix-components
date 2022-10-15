@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar"
+import type { NavbarItem } from "./components/Navbar"
 
-const navbarItems = [
+const navbarItems: NavbarItem[] = [
   {
     text: "twitter",
     value: "twitter",

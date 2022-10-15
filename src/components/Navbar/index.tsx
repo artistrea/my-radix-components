@@ -20,7 +20,7 @@ type LinkItem = NavbarItemDefaults & {
     urlTo: string;
 }
 
-type NavbarItem = | SubmenuItem | LinkItem
+export type NavbarItem = | SubmenuItem | LinkItem
 
 
 interface NavbarProps {
