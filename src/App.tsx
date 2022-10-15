@@ -35,7 +35,7 @@ const navbarItems: NavbarItem[] = [
         text: "submenu",
         value: "submenu",
         isSubmenu: true,
-        orientation: "horizontal",
+        orientation: "vertical",
         items: [
           {
             text: "facebook",
@@ -55,7 +55,7 @@ const navbarItems: NavbarItem[] = [
 
 function App() {
   return <div>
-          <Navbar items={ navbarItems } orientation="vertical" />
+          <Navbar items={ navbarItems } orientation="horizontal" />
           <h1>Hello World</h1>
         </div>
 }
