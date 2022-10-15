@@ -1,10 +1,62 @@
-import Menu from "./components/NavMenu"
+import Navbar from "./components/Navbar"
+
+const navbarItems = [
+  {
+    text: "twitter",
+    value: "twitter",
+    urlTo: "https://twitter.com"
+  },
+  {
+    text: "submenu",
+    value: "submenu",
+    isSubmenu: true,
+    orientation: "vertical",
+    items: [
+      {
+        text: "facebook",
+        value: "facebook",
+        urlTo: "https://facebook.com"
+      },
+      {
+        text: "facebook2",
+        value: "facebook2",
+        urlTo: "https://facebook.com"
+      },
+    ]
+  },
+  {
+    text: "submenu++",
+    value: "submenu++",
+    isSubmenu: true,
+    orientation: "vertical",
+    items: [
+      {
+        text: "submenu",
+        value: "submenu",
+        isSubmenu: true,
+        orientation: "horizontal",
+        items: [
+          {
+            text: "facebook",
+            value: "facebook",
+            urlTo: "https://facebook.com"
+          },
+          {
+            text: "facebook2",
+            value: "facebook2",
+            urlTo: "https://facebook.com"
+          },
+        ]
+      }
+    ]
+  },
+]
 
 function App() {
   return <div>
-    <Menu />
-    <h1>Hello World</h1>
-  </div>
+          <Navbar items={ navbarItems } orientation="vertical" />
+          <h1>Hello World</h1>
+        </div>
 }
 
 export default App
