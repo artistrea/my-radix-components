@@ -50,6 +50,8 @@ const Menu = (props : NavbarItem) => {
                     </StyledContent>
                 </>
                 :
+                // Need another library/framework's Link component?
+                // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
                 <StyledLink href={ props.urlTo }>
                     { text }
                 </StyledLink>
