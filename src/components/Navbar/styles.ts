@@ -1,5 +1,5 @@
-import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
-import styled, { css } from 'styled-components';
+import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
+import styled, { css } from "styled-components"
 
 const NavRoot = styled(NavigationMenuPrimitive.Root)`
     position: relative;
@@ -54,7 +54,6 @@ const itemStyles = css`
     }
 `
 
-
 const StyledTrigger = styled(NavigationMenuPrimitive.Trigger)`
     all: unset;
     ${itemStyles};
@@ -62,8 +61,7 @@ const StyledTrigger = styled(NavigationMenuPrimitive.Trigger)`
     align-items: center;
     justify-content: space-between;
     gap: 2px;
-`;
-
+`
 
 const StyledLink = styled(NavigationMenuPrimitive.Link)`
     ${itemStyles};
@@ -74,16 +72,14 @@ const StyledLink = styled(NavigationMenuPrimitive.Link)`
 
 const StyledContent = styled(NavigationMenuPrimitive.Content)`
     position: absolute;
-    top: 100%;
-    left: 0;
-    &[aria-orientation='horizontal'] {
-        top: 0;
-        left: 100%;
-    }
-    min-width: 100%; 
+    min-width: 100%;
 `
-  
 
-export { NavRoot, NavRootList, NavSubList,
-    StyledTrigger, StyledLink, StyledContent
+export {
+    NavRoot,
+    NavRootList,
+    NavSubList,
+    StyledTrigger,
+    StyledLink,
+    StyledContent,
 }

@@ -1,75 +1,83 @@
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { NavRoot, NavRootList, NavSubList,
-    StyledContent, StyledLink, StyledTrigger
-} from "./styles";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu"
+import {
+    NavRoot,
+    NavRootList,
+    NavSubList,
+    StyledContent,
+    StyledLink,
+    StyledTrigger,
+} from "./styles"
 
 type NavbarItemDefaults = {
-    text: string;
-    value: string;
+    text: string
+    value: string
     isSubmenu?: boolean
 }
 
 type SubmenuItem = NavbarItemDefaults & {
     isSubmenu: true
-    orientation: "vertical" | "horizontal";
-    items: NavbarItem[];
+    attachedTo?: "right" | "left" | "bottom" // default === "bottom"
+    items: NavbarItem[]
 }
 
 type LinkItem = NavbarItemDefaults & {
     isSubmenu?: false
-    urlTo: string;
+    urlTo: string
 }
 
-export type NavbarItem = | SubmenuItem | LinkItem
-
+export type NavbarItem = SubmenuItem | LinkItem
 
 interface NavbarProps {
-    orientation: "vertical" | "horizontal";
-    items: NavbarItem[];
+    items: NavbarItem[]
 }
 
-const Menu = (props : NavbarItem) => {
+const Menu = (props: NavbarItem) => {
     const { isSubmenu, value, text } = props
 
     return (
         <NavigationMenu.Item value={value}>
-            {
-                isSubmenu ?
+            {isSubmenu ? (
                 <>
-                    <StyledTrigger>{ text }</StyledTrigger>
-                    <StyledContent aria-orientation={props.orientation}>
-                        <NavigationMenu.Sub defaultValue={props.items[0]?.value}>
-                            <NavSubList aria-orientation={props.orientation}>
-                                {
-                                    props.items.map((item) =>
+                    <StyledTrigger>{text}</StyledTrigger>
+                    <StyledContent
+                        aria-orientation="vertical"
+                        style={{
+                            left: props.attachedTo === "right" ? "100%" : "",
+                            right: props.attachedTo === "left" ? "100%" : "",
+                            top:
+                                props.attachedTo === "bottom" ||
+                                props.attachedTo === undefined
+                                    ? "100%"
+                                    : "",
+                        }}
+                    >
+                        <NavigationMenu.Sub
+                            defaultValue={props.items[0]?.value}
+                        >
+                            <NavSubList aria-orientation="vertical">
+                                {props.items.map((item) => (
                                     <Menu {...item} key={item.text} />
-                                    )
-                                }
+                                ))}
                             </NavSubList>
                         </NavigationMenu.Sub>
                     </StyledContent>
                 </>
-                :
+            ) : (
                 // Need another library/framework's Link component?
                 // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
-                <StyledLink href={ props.urlTo }>
-                    { text }
-                </StyledLink>
-                }
+                <StyledLink href={props.urlTo}>{text}</StyledLink>
+            )}
         </NavigationMenu.Item>
-
     )
-} 
+}
 
-const Navbar = ({ items, orientation } : NavbarProps) => {
+const Navbar = ({ items }: NavbarProps) => {
     return (
-        <NavRoot orientation={orientation}>
+        <NavRoot orientation="horizontal">
             <NavRootList>
-                {
-                    items.map((item) =>
-                        <Menu {...item} key={item.text}/>
-                    )
-                }
+                {items.map((item) => (
+                    <Menu {...item} key={item.text} />
+                ))}
             </NavRootList>
         </NavRoot>
     )
